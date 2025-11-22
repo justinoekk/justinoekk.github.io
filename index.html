@@ -3,117 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Justin Oekoek | Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Justin Oekoek | Portfolio</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --bg-color: #0f0c29;
-            --accent: #00f0ff;
-            --text: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: var(--text);
-            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            /* Animated Background */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.15), transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(0, 242, 255, 0.15), transparent 25%);
+            color: white;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* Efek Kaca (Glassmorphism) */
+        /* Floating Shapes Animation */
+        .shape {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            animation: floatBackground 10s infinite alternate;
+        }
+        .s1 { width: 300px; height: 300px; background: var(--secondary); top: -50px; left: -50px; }
+        .s2 { width: 400px; height: 400px; background: var(--primary); bottom: -100px; right: -100px; animation-delay: -5s; opacity: 0.4;}
+
+        @keyframes floatBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 50px); }
+        }
+
+        /* 3D Tilt Card */
         .card {
             background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            width: 90%;
-            max-width: 500px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            padding: 50px 40px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 420px;
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .profile-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 25px;
         }
 
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 3px solid var(--accent);
-            margin-bottom: 20px;
             object-fit: cover;
-            /* Mengambil foto profil langsung dari GitHub kamu */
-            background-image: url('https://github.com/justinoekk.png'); 
+            border: 3px solid rgba(255,255,255,0.1);
+            /* Auto-fetch GitHub Profile Picture */
+            background-image: url('https://github.com/justinoekk.png');
             background-size: cover;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
-        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 5px; }
-        h2 { font-size: 1rem; color: var(--accent); margin-bottom: 20px; font-weight: 300; letter-spacing: 2px; }
-        p { color: #ccc; line-height: 1.6; margin-bottom: 30px; font-size: 0.95rem; }
+        /* Status Dot */
+        .status {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            background: #00ff88;
+            border-radius: 50%;
+            border: 3px solid #1a1a1a;
+            box-shadow: 0 0 10px #00ff88;
+            animation: pulse 2s infinite;
+        }
 
-        .links { display: flex; flex-direction: column; gap: 15px; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 30px;
+            height: 20px; /* Prevent layout shift */
+        }
+
+        .typing-text { color: var(--primary); font-weight: 600; }
+
+        /* Tech Stack Badges */
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+        
+        .skill-tag {
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            color: #ccc;
+            transition: 0.3s;
+        }
+        
+        .skill-tag:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* Social Buttons */
+        .btn-container {
+            display: grid;
+            gap: 15px;
+        }
 
         .btn {
             text-decoration: none;
-            color: white;
-            padding: 12px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            transition: 0.3s;
-            border: 1px solid transparent;
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            color: white;
             font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn:hover {
-            background: var(--accent);
-            color: #000;
-            transform: scale(1.02);
-            box-shadow: 0 0 15px var(--accent);
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px -10px var(--primary);
+        }
+        
+        .btn:hover i { color: var(--primary); }
+
+        .btn i { font-size: 1.2rem; transition: 0.3s; }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #555;
         }
 
-        .footer { margin-top: 30px; font-size: 0.8rem; color: #666; }
-
-        /* Responsif untuk HP */
-        @media (max-width: 480px) {
-            .card { padding: 30px 20px; }
-            h1 { font-size: 1.8rem; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="profile-img"></div>
-        
-        <h1>Justin Oekoek</h1>
-        <h2>FULL STACK DEVELOPER</h2>
-        
-        <p>
-            Building the future with code. Passionate about creating interactive applications and experiences on the web.
-        </p>
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
 
-        <div class="links">
+    <div class="card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+        
+        <div class="profile-wrapper">
+            <div class="profile-img"></div>
+            <div class="status"></div>
+        </div>
+
+        <h1>Justin Oekoek</h1>
+        <div class="subtitle">I am a <span class="typing-text"></span></div>
+
+        <div class="skills">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Design</span>
+        </div>
+
+        <div class="btn-container">
             <a href="https://github.com/justinoekk" target="_blank" class="btn">
                 <i class="fab fa-github"></i> GitHub
             </a>
@@ -126,9 +223,31 @@
         </div>
 
         <div class="footer">
-            &copy; 2025 Justin Oekoek. <br> Hosted on GitHub Pages.
+            © 2025 Justin Oekoek. All rights reserved.
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <script>
+        // Inisialisasi Efek 3D Tilt
+        VanillaTilt.init(document.querySelector(".card"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.1,
+        });
+
+        // Inisialisasi Efek Mengetik
+        var typed = new Typed('.typing-text', {
+            strings: ['Full Stack Developer', 'UI/UX Enthusiast', 'Tech Explorer', 'Problem Solver'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true
+        });
+    </script>
 
 </body>
 </html>
